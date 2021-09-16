@@ -4,10 +4,6 @@
         <title>This is the first webpage</title>
     </head>
     <body>
-        <h1>Sai Naren Chava</h1>
-    </body>
-</html>
-
 <h6> Niagara falls</h6>
 <p> 
     It is thought to be the world's <b>fastest</b> moving waterfall. 
@@ -89,4 +85,43 @@ List of items
         <td>$40</td>
     </tr>
 </table>
+<hr>
+<h1>Algorithm to check if graph is bipartite</h1>
+<blockquote cite="https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-9863-7_1370">
+    A bipartite graph is one whose vertices, V, can be divided into two independent sets, V1 and V2, 
+    and every edge of the graph connects one vertex in V1 to one vertex in V2 (Skiena 1990). 
+    If every vertex of V1 is connected to every vertex of V2 the graph is called a complete bipartite graph.
+</blockquote>
+<a href="https://link.springer.com/referenceworkentry/10.1007%2F978-1-4419-9863-7_1370">Link to source</a>
+
+     <pre>
+        int n;
+        vector<vector<int>> adj;
+        
+        vector<int> side(n, -1);
+        bool is_bipartite = true;
+        queue<int> q;
+        for (int st = 0; st < n; ++st) {
+            if (side[st] == -1) {
+                q.push(st);
+                side[st] = 0;
+                while (!q.empty()) {
+                    int v = q.front();
+                    q.pop();
+                    for (int u : adj[v]) {
+                        if (side[u] == -1) {
+                            side[u] = side[v] ^ 1;
+                            q.push(u);
+                        } else {
+                            is_bipartite &= side[u] != side[v];
+                        }
+                    }
+                }
+            }
+        }
+    
+    </pre>
+
+</body>
+</html
 
